@@ -1,16 +1,30 @@
 var http = require('http');
+var fs = require('fs');
 
 var server = http.createServer();
 server.on('request', function(request, response) {
     response.setHeader("Content-Type", "text/html; charset=utf-8");
-    if (request.method === 'GET' && request.url === '/hello') {
-        response.write('<h1>Hello World!</h1>');
-            response.end();
+    if (request.method === 'GET' && request.url === '/') {
+        response.statusCode = 200;
+        fs.readFile('./index.html', function(err, data) {
+            if(err) {
+              throw err;
+            }
+        console.log('Connected');
+        response.write(data);
+        response.end();
+        });
     } else {
-            response.statusCode = 404;
-            response.write('<h1>404: Zła ścieżka!</h1>');
-            response.end();
+        response.setHeader("Content-Type", "image/jpg");
+        response.statusCode = 404;
+        fs.readFile('./cat.jpg', function(err, data) {      
+            if(err) {
+              throw err;
+            }
+        console.log('error 404: Wrong path!')
+        response.write(data);
+        response.end();
+        });
     }
 });
-
 server.listen(8080);
