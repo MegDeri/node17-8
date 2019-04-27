@@ -10,9 +10,9 @@ server.on('request', function(request, response) {
             if(err) {
               throw err;
             }
-        console.log('Connected');
-        response.write(data);
-        response.end();
+          console.log('Connected');
+          response.write(data);
+          response.end();
         });
     } else {
         response.setHeader("Content-Type", "image/jpg");
@@ -21,9 +21,9 @@ server.on('request', function(request, response) {
             if(err) {
               throw err;
             }
-        console.log('error 404: Wrong path!')
-        response.write(data);
-        response.end();
+          console.log('error 404: Wrong path!')
+          response.write(data);
+          response.end();
         });
     }
 });
