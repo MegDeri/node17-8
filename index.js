@@ -10,7 +10,6 @@ server.on("request", function(request, response) {
       if (err) {
         throw err;
       }
-      console.log("Connected");
       response.write(data);
       response.end();
     });
@@ -27,3 +26,4 @@ server.on("request", function(request, response) {
   }
 });
 server.listen(8080);
+console.log("Server running on port 8080");
